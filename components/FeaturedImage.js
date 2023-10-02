@@ -13,13 +13,13 @@ const FeaturedImage = ({ blok }) => {
         //   width={644}
         //   height={429}
         // />
-        <div className="relative">
+        <div className="relative aspect-w-16 aspect-h-10">
           <Image
             src={`${blok.image.filename}/m/`}
             alt={blok.image.alt}
-            width={644}
-            height={429}
-            className="w-full object-cover object-center rounded-2xl"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="w-full h-full object-cover object-center rounded-2xl"
             priority={true}
           />
         </div>
