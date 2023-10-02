@@ -19,6 +19,7 @@ const InsightsCard = ({ blok }) => {
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="w-full h-full absolute top-0 left-0 object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
+                priority={true}
               />
            
             {isSponsored ? (
