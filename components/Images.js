@@ -12,6 +12,7 @@ const Images = ({ blok }) => {
             src={`${blok.image.filename}/m/`}
             fill
             className="w-full h-full object-cover object-center rounded-xl"
+            loading="lazy"
           />
         )}
       </figure>
