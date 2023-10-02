@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { render } from "storyblok-rich-text-react-renderer";
 import { StoryblokComponent } from "@storyblok/react";
+import Image from "next/image";
 
 // International Date formatter
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -11,8 +12,8 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 
 const BlogTeaser = ({ article, slug, category }) => {
   // console.log("blog teaser", category.toLowerCase().split(" ").join("-"));
-  const cat_link = category?.toLowerCase().split(" ").join("-")
-  
+  const cat_link = category?.toLowerCase().split(" ").join("-");
+
   const isPageComponent = article?.component == "page";
   // let date = !isPageComponent && new Date(article?.date?.split(" ")[0]);
   return (
@@ -27,14 +28,14 @@ const BlogTeaser = ({ article, slug, category }) => {
                     key={item._uid}
                     className="relative pt-[50%] sm:pt-[70%] mb-4 rounded-xl overflow-hidden order-1"
                   >
-                    <Link href={`/${slug}`} legacyBehavior>
-                      <a>
-                        <img
-                          className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
-                          src={`${item.image?.filename}/m/`}
-                          alt="blog"
-                        />
-                      </a>
+                    <Link href={`/${slug}`}>
+                      <Image
+                        src={`${item.image?.filename}/m/`}
+                        alt="blog"
+                        fill
+                        className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
                     </Link>
                   </figure>
                 );
@@ -45,7 +46,9 @@ const BlogTeaser = ({ article, slug, category }) => {
                   <div key={item._uid} className="order-2">
                     {category ? (
                       <Link href={`${cat_link}/`} legacyBehavior>
-                        <a className="capitalize bg-lavender text-salmon-900 px-2 py-1 rounded-3xl">{category?.split("-").join(" ")}</a>
+                        <a className="capitalize bg-lavender text-salmon-900 px-2 py-1 rounded-3xl">
+                          {category?.split("-").join(" ")}
+                        </a>
                       </Link>
                     ) : undefined}
                     <h2 className="exclude-index font-poppins mb-0 mt-4 text-2xl text-eerie font-semibold leading-8 tracking-tighter">
