@@ -13,6 +13,7 @@ import FeaturedImage from "./FeaturedImage";
 import BlogAuthorInfo from "./BlogAuthorInfo";
 import BlogTeaser from "./BlogTeaser";
 import UsefulGuides from "./UsefulGuides";
+import DogBreeds from "./DogBreeds";
 import FluidLayout from "./FluidLayout";
 import Content from "./Content";
 import TableOfContent from "./TableOfContent";
@@ -25,6 +26,9 @@ import Config from "./Config";
 import MenuLink from "./MenuLink";
 import FooterLink from "./FooterLink";
 import SubmenuLink from "./SubmenuLink";
+import ImageTextSplit from "./ImageTextSplit";
+import ArticleContentArea from "./ArticleContentArea";
+import Images from "./Images";
 
 /** 3. Initialize it as usual */
 storyblokInit({
@@ -40,6 +44,7 @@ storyblokInit({
     blogAuthorInfo: BlogAuthorInfo,
     blogTeaser: BlogTeaser,
     "useful-guides": UsefulGuides,
+    "dog-breeds": DogBreeds,
     fluidLayout: FluidLayout,
     content: Content,
     tableOfContent: TableOfContent,
@@ -52,6 +57,9 @@ storyblokInit({
     "menu_link": MenuLink,
     "submenu_link": SubmenuLink,
     "footer_link": FooterLink,
+    "image-text-split": ImageTextSplit,
+    "article-content-area": ArticleContentArea,
+    images: Images,
     // config: Config,
     // menu: Menu,
     // footer: Footer,

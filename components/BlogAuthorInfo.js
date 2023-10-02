@@ -1,3 +1,5 @@
+import { storyblokEditable } from "@storyblok/react";
+
 // International Date formatter
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -12,7 +14,7 @@ const BlogAuthorInfo = ({ blok }) => {
   let date = !isPageComponent && new Date(blok.date.split(" ")[0]);
 
   return (
-    <div className="flex items-center mt-8 mb-5 meta_info">
+    <div className="flex items-center mt-8 mb-5 meta_info" {...storyblokEditable(blok)}>
       <figure className="mr-2 basis-1/4 md:basis-auto">
         {blok.image.filename && (
           <img

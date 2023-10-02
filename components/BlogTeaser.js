@@ -10,8 +10,9 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 });
 
 const BlogTeaser = ({ article, slug, category }) => {
-  // console.log("blog teaser", article);
-
+  // console.log("blog teaser", category.toLowerCase().split(" ").join("-"));
+  const cat_link = category?.toLowerCase().split(" ").join("-")
+  
   const isPageComponent = article?.component == "page";
   // let date = !isPageComponent && new Date(article?.date?.split(" ")[0]);
   return (
@@ -43,7 +44,7 @@ const BlogTeaser = ({ article, slug, category }) => {
                 return (
                   <div key={item._uid} className="order-2">
                     {category ? (
-                      <Link href={`${category.toLowerCase()}/`} legacyBehavior>
+                      <Link href={`${cat_link}/`} legacyBehavior>
                         <a className="capitalize bg-lavender text-salmon-900 px-2 py-1 rounded-3xl">{category?.split("-").join(" ")}</a>
                       </Link>
                     ) : undefined}

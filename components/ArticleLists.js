@@ -38,7 +38,7 @@ const ArticleLists = ({ blok }) => {
 
   return (
     <div className="related-articles py-3">
-      <div className="mx-auto max-w-7xl px-3 md:px-12">
+      <div className="mx-auto max-w-6xl px-3 md:px-12">
         {loading && <p>Loading...</p>}
         {!loading && filteredBlog.length === 0 && (
           <p>No articles match this category.</p>

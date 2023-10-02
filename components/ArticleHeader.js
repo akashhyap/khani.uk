@@ -9,7 +9,7 @@ const ArticleHeader = ({ blok, full_slug }) => {
 
   return (
     <>
-      <div className="article_header relative pt-5 pb-12 md:py-16 bg-gradient-to-r bg-poppy-900"  {...storyblokEditable(blok)}>
+      <div className="article_header relative pt-5 pb-12 md:py-16 bg-gradient-to-r bg-poppy-900" {...storyblokEditable(blok)}>
         <div className="w-full md:w-6/12 m-auto text-md md:text-lg px-7">
           <div className="pb-8">
             <ol
@@ -80,11 +80,11 @@ const ArticleHeader = ({ blok, full_slug }) => {
                 className="text-sm text-gray-200 truncate"
                 aria-current="page"
               >
-                {blok.body[0].text}
+                {blok?.body && blok?.body[0]?.text}
               </li>
             </ol>
           </div>
-          {blok.body.map((nestedBlok) => {
+          {blok?.body?.map((nestedBlok) => {
             const isTitle = nestedBlok.component == "h1_title";
             const isBlogAuthorInfo = nestedBlok.component == "blogAuthorInfo";
             const isFeaturedImage = nestedBlok.component == "featuredImage";
@@ -97,7 +97,7 @@ const ArticleHeader = ({ blok, full_slug }) => {
         </div>
       </div>
       <div className="relative hidden md:block">
-        <div className="absolute bottom-0 left-0 right-0 z-10 shape">
+        <div className="absolute -bottom-[1px] -left-[4px] right-0 z-10 shape">
           <svg
             width="3000"
             height="600"

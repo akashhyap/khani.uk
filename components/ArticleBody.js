@@ -4,7 +4,7 @@ const ArticleBody = ({ blok }) => {
   // console.log("ArticleBody");
   return (
     <>
-      {blok.body.map((nestedBlok) => {
+      {blok?.body?.map((nestedBlok) => {
         const isTitle = nestedBlok.component == "h1_title";
         const isBlogAuthorInfo = nestedBlok.component == "blogAuthorInfo";
         const isFeaturedImage = nestedBlok.component == "featuredImage";

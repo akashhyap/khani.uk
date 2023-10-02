@@ -36,7 +36,7 @@ body {
     height: 35px;
   }
   
-  @media screen and (min-width:768px) {
+  /* @media screen and (min-width:768px) {
     .layout-with-index .article-content {
       flex-basis: 50%;
       max-width: 50%;
@@ -46,7 +46,7 @@ body {
       flex-basis: 100%;
       max-width: 100%;
     }
-  }
+  } */
   
   .html-content iframe {
     width: 100%;
@@ -94,4 +94,17 @@ h2 {
 }
 .m-w-7xl {
     @apply max-w-[90%] md:max-w-7xl
+}
+
+.content_block{
+  @apply [&>h2]:text-2xl sm:[&>h2]:text-4xl lg:[&>h2]:text-4xl [&>h2]:font-semibold [&>h2]:pt-4 [&>p>img]:rounded-2xl [&>p]:text-lg [&>p]:py-4 [&>p]:leading-8 [&>h3]:text-2xl [&>h3]:font-semibold [&>ul]:mb-8 [&>ul]:list-disc [&>ul]:pl-4 [&>ul>li]:leading-8 [&>ol]:list-decimal [&>ol]:pl-4 [&>ol>li]:leading-8 mb-10 px-7 
+}
+.image_text_split .content_block {
+  @apply px-0
+}
+.table-of-content {
+  @apply hidden md:block absolute top-0 bottom-0
+}
+.h1_style{
+  @apply text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight pt-5 mb-7 leading-tight lg:leading-[3.25rem]
 }

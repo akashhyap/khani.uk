@@ -8,9 +8,10 @@ const FluidLayout = ({ blok }) => {
 
   return (
     <div
-      className={`fluid-layout md:w-6/12 m-auto ${
+      className={`relative fluid-layout md:w-6/12 m-auto ${
         containerFluid ? "md:w-full" : ""
       } ${!!tableOfContent ? "flex md:px-5 md:pb-10 layout-with-index" : ""}`}
+      {...storyblokEditable(blok)}
     >
       {blok.content.map((nestedBlok) => (
         <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
