@@ -13,7 +13,7 @@ const RelatedArticles = ({ blok }) => {
         <h2 className="exclude-index text-2xl sm:text-4xl lg:text-4xl font-semibold px-3 pb-7">
           {blok.title}
         </h2>
-        <div className="grid w-full grid-cols-1 gap-6 mx-auto lg:grid-cols-3 mb-16">
+        <div className="grid w-full grid-cols-1 gap-4 mx-auto lg:grid-cols-3 mb-16">
           {blok.articles.map((article) => {
             // console.log("home related articles", article);
             return (

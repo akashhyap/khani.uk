@@ -16,8 +16,6 @@ export default async function Page({ params }) {
     cv: Math.random(),
   });
   let { data: config } = await storyblokApi.get("cdn/stories/config");
-  // console.log("config=======>>>>>>>>", config?.story?.content);
-  //  console.log("data", data);
   return (
     <>
       <Config blok={config?.story?.content} />
@@ -28,6 +26,42 @@ export default async function Page({ params }) {
     </>
   );
 }
+
+export const generateMetadata = async ({ params }) => {
+  let slug = params.slug ? params.slug.join("/") : "home";
+
+  const storyblokApi = getStoryblokApi();
+  let { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
+    version: "draft",
+    resolve_links: "url",
+    resolve_relations: ["related-articles.articles"],
+    cv: Math.random(),
+  });
+  // console.log("==>", data?.story?.content?.seo[0]);
+  const hasSEOdata = data?.story?.content?.seo
+  return {
+    title: hasSEOdata ? data?.story?.content?.seo[0]?.site_title : "Khani",
+    description: hasSEOdata ? data?.story?.content?.seo[0]?.site_description : "Khani",
+    openGraph: {
+      title: data?.story?.content?.seo ? data?.story?.content?.seo[0]?.og_title : "Khani",
+      description: hasSEOdata ? data?.story?.content?.seo[0]?.og_description : "Khani",
+      url: hasSEOdata ? data?.story?.content?.seo[0]?.og_url : "",
+      siteName: hasSEOdata ? data?.story?.content?.seo[0]?.og_siteName : "Khani",
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: hasSEOdata ? data?.story?.content?.seo[0]?.twitter_title : "Khani",
+      description: hasSEOdata ? data?.story?.content?.seo[0]?.og_description : "Khani",
+      creator: '@trustseo',
+    },
+    icons: {
+     apple: [
+        { url: '/apple-touch-icon.png' }
+      ]
+    },
+  };
+};
 
 export async function generateStaticParams() {
   const storyblokApi = getStoryblokApi();

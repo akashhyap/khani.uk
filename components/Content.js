@@ -1,7 +1,6 @@
 "use client"
 import { render } from "storyblok-rich-text-react-renderer";
 import { useEffect, useState } from "react";
-import TableOfContent from "./TableOfContent";
 import { storyblokEditable } from "@storyblok/react";
 
 function useHeadings() {
@@ -23,7 +22,7 @@ const Content = ({ blok }) => {
   // console.log("container ==>", blok);
   useHeadings();
   return (
-      <main className="article-content text-md md:text-lg content_block" {...storyblokEditable(blok)}>
+      <main className="article-content md:text-lg content_block" {...storyblokEditable(blok)}>
         {render(blok.content)}
       </main>
   );

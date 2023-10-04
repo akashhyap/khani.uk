@@ -26,7 +26,7 @@ const BlogTeaser = ({ article, slug, category }) => {
                 return (
                   <figure
                     key={item._uid}
-                    className="relative pt-[50%] sm:pt-[70%] mb-4 rounded-xl overflow-hidden order-1"
+                    className="relative aspect-w-16 aspect-h-9 mb-4 rounded-xl overflow-hidden order-1"
                   >
                     <Link href={`/${slug}`}>
                       <Image

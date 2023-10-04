@@ -1,27 +1,31 @@
 "use client";
 import { Fragment, useState } from "react";
 import Link from "next/link";
-import { storyblokEditable,StoryblokComponent } from "@storyblok/react/rsc";
+import { storyblokEditable, StoryblokComponent } from "@storyblok/react/rsc";
 import { Transition } from "@headlessui/react";
 import CustomStoryblokComponent from "./StoryblokMenuComponent";
+import Image from "next/image";
 
 const Config = ({ blok }) => {
   // console.log("config file", blok);
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div className="relative bg-[#f1f1f1] border-b border-gray-200 py-2" {...storyblokEditable(blok)}>
+    <div
+      className="relative bg-[#f1f1f1] border-b border-gray-200 py-2"
+      {...storyblokEditable(blok)}
+    >
       <div className="md:max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center py-3 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <Link href="/">
+            <Link href="/" className="relative">
               <span className="sr-only">Khani</span>
               {blok?.logo && (
                 <img
                   src={blok?.logo?.filename}
                   alt="Khani"
-                  className="h-full object-cove"
-                  width={150}
-                  height={130}
+                  className="h-full object-contain"
+                  width={120}
+                  height={80}
                 />
               )}
             </Link>
@@ -96,7 +100,7 @@ const Config = ({ blok }) => {
               <div>
                 <Link href="/">
                   <span className="sr-only">Khani</span>
-                 {blok?.logo && (
+                  {blok?.logo && (
                     <img
                       src={blok?.logo?.filename}
                       alt="Khani"
@@ -141,7 +145,7 @@ const Config = ({ blok }) => {
                     key={nestedBlok._uid}
                     closeMenu={() => setMenuOpen(false)}
                   />
-                )
+                );
               })}
             </div>
           </div>
