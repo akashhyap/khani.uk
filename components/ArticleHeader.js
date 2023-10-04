@@ -18,7 +18,7 @@ const ArticleHeader = ({ blok, full_slug }) => {
             >
               <li className="text-sm group">
                 <Link href="/" legacyBehavior>
-                  <a className="flex items-center underline underline-offset-4 text-gray-200 group-hover:text-saffron">
+                  <a className="flex items-center underline underline-offset-4 text-white group-hover:text-saffron">
                     <svg
                       className="flex-shrink-0 mr-3 h-4 w-4 text-gray-100 group-hover:text-saffron"
                       width="16"
@@ -56,7 +56,7 @@ const ArticleHeader = ({ blok, full_slug }) => {
               </li>
               <li className="text-sm group">
                 <Link href={`/${prevLink}/`} legacyBehavior>
-                  <a className="flex items-center underline underline-offset-4 text-gray-200 group-hover:text-saffron capitalize">
+                  <a className="flex items-center underline underline-offset-4 text-white group-hover:text-saffron capitalize">
                     {prevLink}
                     <svg
                       className="flex-shrink-0 mx-3 overflow-visible h-2.5 w-2.5 text-gray-100"
@@ -77,7 +77,7 @@ const ArticleHeader = ({ blok, full_slug }) => {
                 </Link>
               </li>
               <li
-                className="text-sm text-gray-200 truncate"
+                className="text-sm text-white truncate"
                 aria-current="page"
               >
                 {blok?.body && blok?.body[0]?.text}

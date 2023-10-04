@@ -22,7 +22,7 @@ const Config = ({ blok }) => {
               {blok?.logo && (
                 <img
                   src={blok?.logo?.filename}
-                  alt="Khani"
+                  alt="Khani logo"
                   className="h-full object-contain"
                   width={120}
                   height={80}

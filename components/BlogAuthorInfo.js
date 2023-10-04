@@ -24,7 +24,7 @@ const BlogAuthorInfo = ({ blok }) => {
           />
         )}
       </figure>
-      <div className="text-base text-white hover:text-gray-100 font-light">
+      <div className="text-sm text-white hover:text-gray-100">
         <span className="mr-1 pseudo_blok">
           <svg
             className="inline"

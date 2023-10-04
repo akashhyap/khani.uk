@@ -40,7 +40,7 @@ const ImageTextSplit = ({ blok }) => {
             ) : (
               <Link
                 href={`/${blok?.button.cached_url}`}
-                className={`inline-block text-white bg-poppy-800 rounded-lg ${sizeClass}`}
+                className={`inline-block text-white text-sm font-medium bg-poppy-800 rounded-lg ${sizeClass}`}
               >
                 {blok?.button_label}
               </Link>
