@@ -29,6 +29,8 @@ import SubmenuLink from "./SubmenuLink";
 import ImageTextSplit from "./ImageTextSplit";
 import ArticleContentArea from "./ArticleContentArea";
 import Images from "./Images";
+import ContactForm from "./Contact";
+import SubscribeNewsletter from "./SubscribeNewsletter";
 
 /** 3. Initialize it as usual */
 storyblokInit({
@@ -60,6 +62,8 @@ storyblokInit({
     "image-text-split": ImageTextSplit,
     "article-content-area": ArticleContentArea,
     images: Images,
+    contact: ContactForm,
+    subscribeNewsletter: SubscribeNewsletter,
     // config: Config,
     // menu: Menu,
     // footer: Footer,
