@@ -17,19 +17,19 @@ export default async function Page({ params }) {
     cv: Math.random(),
   });
   let { data: config } = await storyblokApi.get("cdn/stories/config");
-  const isBlogPage =
-    data.story?.full_slug !== "home" && data.story?.full_slug !== "contact";
+  
+  const isBlogPage = data.story.content.component === "blog";
   return (
     <>
-      {isBlogPage && !data.story.is_startpage && (
+      {isBlogPage && (
         <ArticleJsonLd
           useAppDir={true}
           url={`https://khani-uk.vercel.app/${data.story?.full_slug}`}
-          title={data.story.content?.body[0]?.text}
+          title={data.story.content?.body[0]?.text || data.content.name}
           datePublished={data.story?.first_published_at}
           authorName={data.story.content?.body[1]?.authorName}
           images={data.story.content?.body[2]?.image.filename}
-          description={data.story.content?.seo[0]?.site_description}
+          description={data.story.content?.seo && data.story.content?.seo[0]?.site_description}
         />
       )}
       <Config blok={config?.story?.content} />
