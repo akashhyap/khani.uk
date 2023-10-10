@@ -8,7 +8,6 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 });
 
 const BlogAuthorInfo = ({ blok }) => {
-  // console.log("BlogAuthorInfo", blok);
 
   const isPageComponent = blok.component == "page";
   let date = !isPageComponent && new Date(blok.date.split(" ")[0]);

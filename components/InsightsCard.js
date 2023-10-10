@@ -3,7 +3,6 @@ import Link from "next/link";
 import { render } from "storyblok-rich-text-react-renderer";
 
 const InsightsCard = ({ blok }) => {
-  // console.log("insight card ==>", blok);
 
   const isSponsored = blok?.sponsored;
   const isBackgroundImageLayout = blok?.backgroundImageLayout;

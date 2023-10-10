@@ -7,7 +7,6 @@ import CustomStoryblokComponent from "./StoryblokMenuComponent";
 import Image from "next/image";
 
 const Config = ({ blok }) => {
-  // console.log("config file", blok);
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div

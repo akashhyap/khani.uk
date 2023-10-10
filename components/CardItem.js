@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 const CardItem = ({ blok }) => {
-  // console.log("card item", blok);
 
   return (
     <Link href={`/${blok?.link.cached_url}`} legacyBehavior>

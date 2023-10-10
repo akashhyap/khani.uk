@@ -19,7 +19,6 @@ function useHeadings() {
 }
 
 const Content = ({ blok }) => {
-  // console.log("container ==>", blok);
   useHeadings();
   return (
       <main className="article-content md:text-lg content_block" {...storyblokEditable(blok)}>

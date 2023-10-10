@@ -5,7 +5,6 @@ import { Menu, Popover, Transition } from "@headlessui/react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 const MenuLink = ({ blok, closeMenu }) => {
-  // console.log("menu", blok);
   const hasSubMenu = blok?.menu?.length != 0;
 
   return (

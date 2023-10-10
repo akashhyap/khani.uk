@@ -2,8 +2,6 @@ import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
 
 import Link from "next/link";
 const ArticleHeader = ({ blok, full_slug }) => {
-  // console.log("article header", blok);
-
   let prevLink = full_slug.split("/")[0];
   let prevLinkLabel = full_slug.split("/")[0].split("-").join(" ");
 

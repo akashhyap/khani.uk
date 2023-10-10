@@ -2,7 +2,6 @@ import { storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
 
 const Images = ({ blok }) => {
-  // console.log("img ==>", blok);
   return (
     <div className="px-7 mb-10" {...storyblokEditable(blok)}>
       <figure className="w-full relative aspect-w-16 aspect-h-9">

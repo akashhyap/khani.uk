@@ -5,7 +5,6 @@ import React from "react";
 import { render } from "storyblok-rich-text-react-renderer";
 
 const Footer = ({ blok }) => {
-  // console.log("footer", blok);
   return (
     <div className="footer bg-[#fcf2eb] pt-9">
       <div className="md:max-w-6xl mx-auto px-4 sm:px-6">

@@ -1,7 +1,6 @@
 import { StoryblokComponent } from "@storyblok/react";
 
 const ArticleBody = ({ blok }) => {
-  // console.log("ArticleBody");
   return (
     <>
       {blok?.body?.map((nestedBlok) => {

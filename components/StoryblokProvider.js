@@ -30,7 +30,7 @@ import ImageTextSplit from "./ImageTextSplit";
 import ArticleContentArea from "./ArticleContentArea";
 import Images from "./Images";
 import ContactForm from "./Contact";
-import SubscribeNewsletter from "./SubscribeNewsletter";
+import SubscribeNewsletter from "./SubscribeNewsletter.js";
 
 /** 3. Initialize it as usual */
 storyblokInit({

@@ -3,13 +3,10 @@ import { getStoryblokApi } from "@storyblok/react";
 import BlogTeaser from "./BlogTeaser";
 
 const ArticleLists = ({ blok }) => {
-  // console.log("Article list", blok);
-
   const parentCategory = blok?.parentCategory?.cached_url
     .split("/")
     .slice(0)[0];
 
-  console.log("parentCategory",parentCategory);
   const [blog, setBlog] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,18 +16,13 @@ const ArticleLists = ({ blok }) => {
       const { data } = await storyblokApi.get(`cdn/stories`);
       setBlog(data.stories);
       setLoading(false);
-      // console.log("data.stories",data.stories);
     };
     getArticles();
   }, []);
 
   const filteredBlog = blog.filter((story) => {
-    // console.log("filteredBlog",story);
-
     const checkSlug =
       story.full_slug.trim("").split("/").slice(0)[0] === parentCategory;
-
-      // console.log("checkSlug",story.full_slug);
 
     const tagList = story.tag_list.map((tag) => tag.toLowerCase());
     return checkSlug && tagList.includes(blok.category.toLowerCase());

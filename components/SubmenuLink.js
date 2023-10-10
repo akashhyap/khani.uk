@@ -1,7 +1,6 @@
 import { storyblokEditable,StoryblokComponent } from "@storyblok/react/rsc";
 
 const SubmenuLink = ({ blok }) => {
-  // console.log("sub menu", blok);
 
   return (
     <div className="">

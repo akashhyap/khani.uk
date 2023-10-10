@@ -34,7 +34,6 @@ const TableOfContent = () => {
             <ul className="list-decimal pl-4">
               {headings.map((heading) => {
                 const ID = heading.toLowerCase().split(" ").join("-");
-                // console.log(ID);
                 return (
                   <li key={heading} className="mb-1">
                     <Link

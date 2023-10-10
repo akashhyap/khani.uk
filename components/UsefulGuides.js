@@ -12,7 +12,6 @@ import { render } from "storyblok-rich-text-react-renderer";
 // import HorizontalCardItem from "./HorizontalCardItem";
 
 const UsefulGuides = async ({ blok }) => {
-  // console.log("Useful guides:", blok);
   const storyblokApi = getStoryblokApi();
   let { data } = await storyblokApi.get("cdn/stories", {
     starts_with: "useful-guides",
@@ -41,7 +40,6 @@ const UsefulGuides = async ({ blok }) => {
       })}
       <div className="grid lg:grid-cols-2 gap-6 mb-10">
         {articles.filter(filterSiblingStories).map((story) => {
-          // console.log("nested", story);
           if (story.content.component !== "page" &&
           story.tag_list.length === 0) {
             return (

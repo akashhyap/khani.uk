@@ -2,7 +2,6 @@ import { storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
 
 const FeaturedImage = ({ blok }) => {
-  // console.log("img ==>", blok);
   return (
     <figure className="w-full z-20 relative" {...storyblokEditable(blok)}>
       {blok.image.filename && (

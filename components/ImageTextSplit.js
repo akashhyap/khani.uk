@@ -4,7 +4,6 @@ import Link from "next/link";
 import { render } from "storyblok-rich-text-react-renderer";
 
 const ImageTextSplit = ({ blok }) => {
-  // console.log("blok", blok);
   const buttonSize = blok?.button_size;
   const sizeClass =
     buttonSize === "jumbo"

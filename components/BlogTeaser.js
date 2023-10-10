@@ -11,11 +11,9 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 });
 
 const BlogTeaser = ({ article, slug, category }) => {
-  // console.log("blog teaser", category.toLowerCase().split(" ").join("-"));
   const cat_link = category?.toLowerCase().split(" ").join("-");
 
   const isPageComponent = article?.component == "page";
-  // let date = !isPageComponent && new Date(article?.date?.split(" ")[0]);
   return (
     <>
       {!isPageComponent && (

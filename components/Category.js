@@ -42,7 +42,6 @@ const Category = ({ blok }) => {
               }  mb-16`}
             >
               {filteredBlog.map((story) => {
-                // console.log("story", story);
                 const parentCategory = story?.full_slug
                   .trim("")
                   .split("/")

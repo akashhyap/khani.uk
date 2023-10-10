@@ -3,7 +3,6 @@ import { storyblokEditable } from "@storyblok/react";
 import Link from "next/link";
 
 const RelatedArticles = ({ blok }) => {
-  // console.log('related articles',blok);
   const bgColor = {
     backgroundColor: blok?.backgroundColor?.color,
   };
@@ -15,7 +14,6 @@ const RelatedArticles = ({ blok }) => {
         </h2>
         <div className="grid w-full grid-cols-1 gap-4 mx-auto lg:grid-cols-3 mb-16">
           {blok.articles.map((article) => {
-            // console.log("home related articles", article);
             return (
               <BlogTeaser
                 article={article.content}
