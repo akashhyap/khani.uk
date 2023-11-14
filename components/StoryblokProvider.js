@@ -31,6 +31,7 @@ import ArticleContentArea from "./ArticleContentArea";
 import Images from "./Images";
 import ContactForm from "./Contact";
 import SubscribeNewsletter from "./SubscribeNewsletter.js";
+import Diet from "./Diet";
 
 /** 3. Initialize it as usual */
 storyblokInit({
@@ -64,6 +65,7 @@ storyblokInit({
     images: Images,
     contact: ContactForm,
     subscribeNewsletter: SubscribeNewsletter,
+    diet: Diet,
     // config: Config,
     // menu: Menu,
     // footer: Footer,
