@@ -33,6 +33,9 @@ import ContactForm from "./Contact";
 import SubscribeNewsletter from "./SubscribeNewsletter.js";
 import Diet from "./Diet";
 import Health from "./Health";
+import SmallDogs from "./SmallDogs";
+import BigDogs from "./BigDogs";
+import Products from "./Products";
 
 /** 3. Initialize it as usual */
 storyblokInit({
@@ -68,6 +71,9 @@ storyblokInit({
     subscribeNewsletter: SubscribeNewsletter,
     diet: Diet,
     health: Health,
+    "small-dogs": SmallDogs,
+    "big-dogs": BigDogs,
+    products: Products,
     // config: Config,
     // menu: Menu,
     // footer: Footer,
