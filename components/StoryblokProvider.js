@@ -32,6 +32,7 @@ import Images from "./Images";
 import ContactForm from "./Contact";
 import SubscribeNewsletter from "./SubscribeNewsletter.js";
 import Diet from "./Diet";
+import Health from "./Health";
 
 /** 3. Initialize it as usual */
 storyblokInit({
@@ -66,6 +67,7 @@ storyblokInit({
     contact: ContactForm,
     subscribeNewsletter: SubscribeNewsletter,
     diet: Diet,
+    health: Health,
     // config: Config,
     // menu: Menu,
     // footer: Footer,

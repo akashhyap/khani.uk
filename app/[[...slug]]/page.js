@@ -25,7 +25,7 @@ export default async function Page({ params }) {
         <ArticleJsonLd
           useAppDir={true}
           url={`https://khani-uk.vercel.app/${data.story?.full_slug}`}
-          title={data.story.content?.body[0]?.text || data.content.name}
+          title={data.story.content?.body[0]?.text || data?.content?.name}
           datePublished={data.story?.first_published_at}
           authorName={data.story.content?.body[1]?.authorName}
           images={data.story.content?.body[2]?.image.filename}
