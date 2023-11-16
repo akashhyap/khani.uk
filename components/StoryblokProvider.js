@@ -36,6 +36,7 @@ import Health from "./Health";
 import SmallDogs from "./SmallDogs";
 import BigDogs from "./BigDogs";
 import Products from "./Products";
+import Faq from "./Faq";
 
 /** 3. Initialize it as usual */
 storyblokInit({
@@ -74,6 +75,7 @@ storyblokInit({
     "small-dogs": SmallDogs,
     "big-dogs": BigDogs,
     products: Products,
+    faq: Faq,
     // config: Config,
     // menu: Menu,
     // footer: Footer,
