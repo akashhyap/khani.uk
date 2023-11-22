@@ -31,7 +31,7 @@ const FaqContent = ({ blok, itemIdx }) => {
               leaveFrom="transform scale-100 opacity-100"
               leaveTo="transform scale-95 opacity-0"
             >
-              <Disclosure.Panel static className="pt-4 pb-2">
+              <Disclosure.Panel static className="pt-4 pb-2 [&>ul]:mb-8 [&>ul]:list-disc [&>ul]:pl-4 [&>ul>li]:leading-8 [&>ol]:list-decimal [&>ol]:pl-4 [&>ol>li]:leading-8">
                 {render(blok.answer)}
               </Disclosure.Panel>
             </Transition>
