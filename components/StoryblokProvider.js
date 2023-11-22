@@ -37,6 +37,7 @@ import SmallDogs from "./SmallDogs";
 import BigDogs from "./BigDogs";
 import Products from "./Products";
 import Faq from "./Faq";
+import FaqContent from "./FaqContent";
 
 /** 3. Initialize it as usual */
 storyblokInit({
@@ -62,9 +63,9 @@ storyblokInit({
     "card-item": CardItem,
     "related-articles": RelatedArticles,
     config: Config,
-    "menu_link": MenuLink,
-    "submenu_link": SubmenuLink,
-    "footer_link": FooterLink,
+    menu_link: MenuLink,
+    submenu_link: SubmenuLink,
+    footer_link: FooterLink,
     "image-text-split": ImageTextSplit,
     "article-content-area": ArticleContentArea,
     images: Images,
@@ -76,6 +77,7 @@ storyblokInit({
     "big-dogs": BigDogs,
     products: Products,
     faq: Faq,
+    faqContent: FaqContent,
     // config: Config,
     // menu: Menu,
     // footer: Footer,

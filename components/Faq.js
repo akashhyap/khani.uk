@@ -6,7 +6,7 @@ const Faq = ({ blok }) => {
     marginBottom: blok?.marginBottom,
   };
   return (
-    <div style={addedClasses} {...storyblokEditable(blok)}>
+    <div className="relative w-full px-7 mb-10" style={addedClasses} {...storyblokEditable(blok)}>
       {blok?.body?.map((nestedBlok) => (
         <StoryblokComponent
           blok={nestedBlok}

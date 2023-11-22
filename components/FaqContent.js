@@ -10,7 +10,7 @@ const FaqContent = ({ blok, itemIdx }) => {
       <Disclosure
         key={itemIdx}
         as="div"
-        className="mt-2 border-b border-gray-200"
+        className="mt-2 border-b border-gray-200 w-full"
       >
         {({ open }) => (
           <>
