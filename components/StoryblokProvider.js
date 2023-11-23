@@ -4,7 +4,7 @@ import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 
 /** 2. Import your components */
 import Page from "./Page";
-// import HtmlElements from "./HtmlElements";
+import HtmlElements from "./HtmlElements";
 import TitleH1 from "./TitleH1";
 import Insights from "./Insights";
 import InsightsCard from "./InsightsCard";
@@ -78,6 +78,7 @@ storyblokInit({
     products: Products,
     faq: Faq,
     faqContent: FaqContent,
+    htmlElements:HtmlElements
     // config: Config,
     // menu: Menu,
     // footer: Footer,

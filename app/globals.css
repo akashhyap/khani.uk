@@ -108,3 +108,17 @@ h2 {
 .h1_style{
   @apply text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight pt-5 mb-7 leading-tight lg:leading-[3.25rem]
 }
+.table-content {
+  overflow-x: auto;
+}
+.table-content table {
+  width: 100%;
+}
+.table-content table td {
+  vertical-align: top;
+  padding: 5px;
+  font-size: 17px;
+}
+.table-content table tr:nth-child(even){
+  background-color: #f1f5f9;
+}
