@@ -1,24 +1,28 @@
 import BlogTeaser from "./BlogTeaser";
 import { storyblokEditable } from "@storyblok/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const RelatedArticles = ({ blok }) => {
+  const pathname = usePathname();
+
   const bgColor = {
     backgroundColor: blok?.backgroundColor?.color,
   };
   return (
-    <div className="related-articles py-3 md:py-14" style={bgColor} {...storyblokEditable(blok)}>
+    <div className="related-articles py-10 md:py-14" style={bgColor} {...storyblokEditable(blok)}>
       <div className="mx-auto max-w-6xl px-3">
-        <h2 className="exclude-index text-2xl sm:text-4xl lg:text-4xl font-semibold px-3 pb-7">
+        <h2 className="exclude-index text-2xl sm:text-4xl lg:text-4xl font-semibold px-3 pb-0 md:pb-5">
           {blok.title}
         </h2>
-        <div className="grid w-full grid-cols-1 gap-4 mx-auto lg:grid-cols-3 mb-16">
+        <div className="grid w-full grid-cols-1 gap-4 mx-auto lg:grid-cols-3 mb-8 md:mb-16">
           {blok.articles.map((article) => {
             return (
               <BlogTeaser
                 article={article.content}
                 slug={article.full_slug}
                 key={article.uuid}
+                path={pathname}
               />
             );
           })}

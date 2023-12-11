@@ -1,11 +1,20 @@
-import { storyblokInit, apiPlugin } from '@storyblok/js'
+import { storyblokInit, apiPlugin } from "@storyblok/js";
+import { getStoryblokApi } from "@storyblok/react";
+
+export async function fetchSearchResults(query) {
+  const storyblokApi = getStoryblokApi();
+  const { data } = await storyblokApi.get("cdn/stories", {
+    version: "draft",
+    search_term: query,
+  });
+  return data.stories;
+}
 
 const { storyblokApi } = storyblokInit({
-    accessToken: process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN,
-    use: [apiPlugin],
-  })
+  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN,
+  use: [apiPlugin],
+});
 
-  
 export async function getStory(slug) {
   if (!storyblokApi) {
     return;

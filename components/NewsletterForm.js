@@ -62,7 +62,7 @@ const NewsletterForm = ( { status, message, onValidated }) => {
   }
 
   return (
-    <div className='max-w-xl mx-auto flex flex-col items-center py-10 lg:py-20'>
+    <div className='max-w-xl mx-auto flex flex-col items-center px-4 md:px-0 py-10 lg:py-20'>
       <h2 className="text-3xl">Subscribe to newsletter</h2>
       <div className="flex newsletter-input-fields space-x-2 mt-5">
         <div className="mc-field-group">

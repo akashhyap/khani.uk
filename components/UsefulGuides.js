@@ -1,59 +1,95 @@
+import React, { useState, useEffect } from "react";
 import BlogTeaser from "./BlogTeaser";
-// import BlogTeaserLayout from "./BlogTeaserLayout";
-import {
-  getStoryblokApi,
-  StoryblokComponent,
-  storyblokEditable,
-} from "@storyblok/react/rsc";
+import { getStoryblokApi, StoryblokComponent } from "@storyblok/react/rsc";
+import { usePathname } from "next/navigation";
+import Breadcrumbs from "./Breadcrumb";
 
-import { render } from "storyblok-rich-text-react-renderer";
+const UsefulGuides = ({ blok }) => {
+  const pathname = usePathname();
+  const [articles, setArticles] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const storiesPerPage = 3; // Fetch 3 stories per page
 
-// import BreadcrumbBlog from "./BreadcrumbBlog";
-// import HorizontalCardItem from "./HorizontalCardItem";
+  useEffect(() => {
+    const fetchArticles = async () => {
+      setIsLoading(true);
+      const storyblokApi = getStoryblokApi();
+      const response = await storyblokApi.get("cdn/stories", {
+        starts_with: "useful-guides",
+        version: "draft",
+        per_page: storiesPerPage,
+        page: currentPage,
+        cv: Date.now(),
+        is_startpage: false,
+      });
 
-const UsefulGuides = async ({ blok }) => {
-  const storyblokApi = getStoryblokApi();
-  let { data } = await storyblokApi.get("cdn/stories", {
-    starts_with: "useful-guides",
-    version: "draft",
-    cv: Math.random(),
-    is_startpage: false,
-  });
-  let articles = data.stories.map((a) => {
-    a.content.slug = a.slug;
-    return a;
-  });
-  // Filter out sibling stories based on their full_slug.
+      setIsLoading(false);
+      if (response.data.stories.length > 0) {
+        setArticles(prev => [...prev, ...response.data.stories.map(story => {
+          story.content.slug = story.slug;
+          return story;
+        })]);
+      }
+      if (response.data.stories.length < storiesPerPage) {
+        setHasMore(false);
+      }
+    };
+
+    fetchArticles();
+  }, [currentPage]);
+
+  const loadMore = () => {
+    if (!isLoading && hasMore) {
+      setCurrentPage(prev => prev + 1);
+    }
+  };
+
   const filterSiblingStories = (story) => {
     const currentPath = blok.filter_slug;
-   
-    if (currentPath) {
-      return story.full_slug.startsWith(currentPath);
-    }
-    return true; // If no currentPath provided, show all.
+    return currentPath ? story.full_slug.startsWith(currentPath) : true;
   };
 
   return (
     <>
-      {blok?.content.map((nestedBlok) => {
-        return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />;
-      })}
-      <div className="grid lg:grid-cols-2 gap-6 mb-10">
-        {articles.filter(filterSiblingStories).map((story) => {
-          if (story.content.component !== "page" &&
-          story.tag_list.length === 0) {
-            return (
-              <BlogTeaser
-                key={story.uuid}
-                article={story.content}
-                slug={story.full_slug}
-                category={blok?.category}
-              />
-            );
-          }
-        })}
+      <Breadcrumbs pathname={pathname} />
+      {blok?.content &&
+        blok?.content.map((nestedBlok) => (
+          <div key={nestedBlok._uid} className="py-3 md:py-4">
+            <StoryblokComponent blok={nestedBlok} />
+          </div>
+        ))}
+      <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-10">
+        {articles
+          .filter(filterSiblingStories)
+          .map(
+            (story) =>
+              story.content.component !== "page" && (
+                <BlogTeaser
+                  key={story.uuid}
+                  article={story.content}
+                  slug={story.full_slug}
+                  category={blok?.category}
+                  tag={story?.tag_list}
+                  path={pathname}
+                />
+              )
+          )}
       </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        hasMore && (
+          <div className="text-center mb-10">
+            <button onClick={loadMore} className="bg-poppy-900 text-white py-3 px-5 rounded-md">
+              Load More
+            </button>
+          </div>
+        )
+      )}
     </>
   );
 };
+
 export default UsefulGuides;

@@ -51,7 +51,7 @@ const Menus = ({ blok, closeMenu }) => {
               </>
             )}
           </Menu>
-          <Popover key={blok._uid} className="mt-4 md:hidden">
+          <Popover key={blok._uid} className="md:mt-4 md:hidden">
             {({ open }) => (
               <>
                 <Popover.Button className="flex justify-between items-center w-full py-2 text-lg mt-2 md:mt-0 font-medium text-black hover:text-gray-900">

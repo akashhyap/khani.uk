@@ -5,6 +5,7 @@ import { storyblokEditable, StoryblokComponent } from "@storyblok/react/rsc";
 import { Transition } from "@headlessui/react";
 import CustomStoryblokComponent from "./StoryblokMenuComponent";
 import Image from "next/image";
+import { FaSearch } from "react-icons/fa";
 
 const Config = ({ blok }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,6 +16,7 @@ const Config = ({ blok }) => {
     >
       <div className="md:max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center py-3 md:justify-start md:space-x-10">
+          {/* Site Logo */}
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/" className="relative">
               <span className="sr-only">Khani</span>
@@ -29,6 +31,7 @@ const Config = ({ blok }) => {
               )}
             </Link>
           </div>
+          {/* Mobile buttons */}
           <div className="-mr-2 -my-2 md:hidden">
             <button
               type="button"
@@ -54,6 +57,7 @@ const Config = ({ blok }) => {
               </svg>
             </button>
           </div>
+          {/* Menu items */}
           <nav className="hidden md:flex space-x-8">
             {blok?.header_menu?.map((nestedBlok) => (
               <StoryblokComponent
@@ -63,6 +67,7 @@ const Config = ({ blok }) => {
               />
             ))}
           </nav>
+          <Link href="/search"><FaSearch /></Link>
         </div>
       </div>
 

@@ -10,15 +10,35 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
 });
 
-const BlogTeaser = ({ article, slug, category }) => {
-  const cat_link = category?.toLowerCase().split(" ").join("-");
+const BlogTeaser = ({ article, slug, category, tag, path }) => {
+  const postSlugParts = slug.split("/");
 
+  const generateCategoryLink = (categoryName) => {
+    const categorySlug = categoryName.toLowerCase().split(" ").join("-");
+    let link = "";
+
+    for (let i = 0; i < postSlugParts.length; i++) {
+      if (postSlugParts[i] === categorySlug) {
+        link = `/${postSlugParts.slice(0, i + 1).join("/")}/`;
+        break;
+      }
+    }
+
+    return link || `/${categorySlug}`;
+  };
+
+  const isBaseCategory = (tagName) => {
+    // Check if the tag is the base category (e.g., 'dog-breeds')
+    return path.split("/")[1] === tagName.toLowerCase().split(" ").join("-");
+  };
+
+  const cat_link = category?.toLowerCase().split(" ").join("-");
   const isPageComponent = article?.component == "page";
   return (
     <>
       {!isPageComponent && (
         <div className="blog_teaser flex flex-col group bg-gray-100 p-4 rounded-xl transition duration-500 ease-in-out">
-          {article?.body.map((item) => {
+          {article?.body?.map((item) => {
             switch (item.component) {
               case "featuredImage":
                 return (
@@ -42,13 +62,27 @@ const BlogTeaser = ({ article, slug, category }) => {
               case "h1_title":
                 return (
                   <div key={item._uid} className="order-2">
-                    {category ? (
-                      <Link href={`${cat_link}/`} legacyBehavior>
-                        <a className="capitalize bg-lavender text-salmon-900 px-2 py-1 rounded-3xl">
-                          {category?.split("-").join(" ")}
-                        </a>
-                      </Link>
-                    ) : undefined}
+                    {tag &&
+                      tag.map((tagName, i) => {
+                        if (
+                          path.split("/").length > 2 &&
+                          isBaseCategory(tagName)
+                        ) {
+                          // Skip the tag if it's the base category and the path is more detailed
+                          return null;
+                        }
+
+                        const href = generateCategoryLink(tagName);
+                        return (
+                          <Link
+                            key={i}
+                            href={href}
+                            className="capitalize text-sm bg-lavender text-salmon-900 px-2 py-1 mr-2 rounded-3xl"
+                          >
+                            {tagName.split("-").join(" ")}
+                          </Link>
+                        );
+                      })}
                     <h2 className="exclude-index font-poppins mb-0 mt-4 text-2xl text-eerie font-semibold leading-8 tracking-tighter">
                       <Link href={`/${slug}`} legacyBehavior>
                         <a>{item.text}</a>

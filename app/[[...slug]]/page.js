@@ -17,7 +17,6 @@ export default async function Page({ params }) {
     cv: Math.random(),
   });
   let { data: config } = await storyblokApi.get("cdn/stories/config");
-  
   const isBlogPage = data.story.content.component === "blog";
   return (
     <>

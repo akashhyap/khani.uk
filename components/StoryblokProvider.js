@@ -38,6 +38,7 @@ import BigDogs from "./BigDogs";
 import Products from "./Products";
 import Faq from "./Faq";
 import FaqContent from "./FaqContent";
+import SearchBar from "./SearchBar";
 
 /** 3. Initialize it as usual */
 storyblokInit({
@@ -78,7 +79,8 @@ storyblokInit({
     products: Products,
     faq: Faq,
     faqContent: FaqContent,
-    htmlElements:HtmlElements
+    htmlElements: HtmlElements,
+    searchBar: SearchBar,
     // config: Config,
     // menu: Menu,
     // footer: Footer,
