@@ -1,64 +1,157 @@
-import { useForm, ValidationError } from "@formspree/react";
+"use client";
+import { useForm } from "react-hook-form";
+import { sendEmail } from "@/utils/send-email";
+import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
+import { useState } from "react";
+import Image from "next/image";
 
-export default function ContactForm() {
-  const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORM);
+const Contact = ({ blok }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+  const [responseMessage, setResponseMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
-  if (state.succeeded) {
-    return <div className="max-w-xl mx-auto flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">Thanks for your submission!</div>;
+  async function onSubmit(data) {
+    setIsLoading(true);
+    setIsError(false);
+    try {
+      const response = await sendEmail(data);
+      if (response && response.message) {
+        setResponseMessage(response.message);
+        setIsSent(true);
+        reset(); // Reset the form fields
+        setTimeout(() => {
+          setIsSent(false); // Remove the success message after a delay
+          setResponseMessage(""); // Clear the response message
+        }, 5000); // 5 seconds delay
+      } else {
+        setResponseMessage(
+          "Email sent, but no message returned from the server."
+        );
+      }
+    } catch (error) {
+      setIsError(true);
+      setResponseMessage(
+        error.message || "An error occurred while sending the email."
+      );
+    }
+    setIsLoading(false);
   }
 
-  return (
-    <div className="max-w-xl mx-auto flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Email Address
-          </label>
-          <div className="mt-2">
-            <input
-              id="email"
-              type="email"
-              name="email"
-              required
-              className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-          <ValidationError prefix="Email" field="email" errors={state.errors} />
-        </div>
-        <div>
-          <label
-            htmlFor="message"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Message
-          </label>
-          <div className="mt-2">
-            <textarea
-              id="message"
-              name="message"
-              required
-              className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-          <ValidationError
-            prefix="Message"
-            field="message"
-            errors={state.errors}
-          />
-        </div>
+  const inlineStyle = {
+    paddingTop: blok?.paddingTop,
+    paddingBottom: blok?.paddingBottom,
+  };
 
-        <button
-          type="submit"
-          disabled={state.submitting}
-          className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Submit
-        </button>
-        <ValidationError errors={state.errors} />
-      </form>
+  return (
+    <div {...storyblokEditable(blok)}>
+      <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight pt-5 mb-7 mt-6 leading-tight lg:leading-[3.25rem]">
+        {blok?.title}
+      </h1>
+
+      <div
+        className={`grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10 mb-10 container ${
+          blok.maxWidth
+        } ${blok.maxWidth ? "mx-auto" : ""}`}
+      >
+        {/* Form */}
+        <div className="p-8 shadow-2xl rounded-lg">
+          <form onSubmit={handleSubmit(onSubmit)} style={inlineStyle}>
+            <div className="mb-5">
+              <label
+                htmlFor="name"
+                className="mb-3 block text-base font-medium text-black"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="w-full rounded-md border border-gray-300 bg-white py-3 px-6 text-base font-medium text-gray-700 outline-none focus:border-black focus:shadow-md"
+                {...register("name", { required: true })}
+              />
+              <div>
+                {errors?.name && (
+                  <p className="text-poppy-900 text-sm mt-2">
+                    Full name is required!
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="mb-5">
+              <label
+                htmlFor="email"
+                className="mb-3 block text-base font-medium text-black"
+              >
+                Email Address
+              </label>
+              <input
+                type="email"
+                placeholder="example@domain.com"
+                className="w-full rounded-md border border-gray-300 bg-white py-3 px-6 text-base font-medium text-gray-700 outline-none focus:border-black focus:shadow-md"
+                {...register("email", { required: true })}
+              />
+              <div>
+                {errors?.email && (
+                  <p className="text-poppy-900 text-sm mt-2">
+                    Email is required!
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="mb-5">
+              <label
+                htmlFor="message"
+                className="mb-3 block text-base font-medium text-black"
+              >
+                Message
+              </label>
+              <textarea
+                rows={4}
+                placeholder="Type your message"
+                className="w-full resize-none rounded-md border border-gray-300 bg-white py-3 px-6 text-base font-medium text-gray-700 outline-none focus:border-black focus:shadow-md"
+                {...register("message", { required: true })}
+              ></textarea>
+            </div>
+            <div>
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : isSent ? (
+                <p
+                  className={`text-green-500 ${
+                    isError ? "text-poppy-900" : ""
+                  }`}
+                >
+                  {responseMessage}
+                </p>
+              ) : (
+                <button className="hover:shadow-form rounded-md bg-black py-3 px-8 text-base font-semibold text-white outline-none">
+                  Submit
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
+        {/* Image */}
+        {blok?.image && <div className="relative hidden md:block">
+          <Image
+            src={`${blok?.image?.filename}`}
+            alt="Image Description"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="w-full h-full absolute top-0 left-0 object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
+            priority={true}
+          />
+        </div>}
+      </div>
     </div>
   );
-}
+};
+
+export default Contact;
