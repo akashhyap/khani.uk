@@ -14,12 +14,12 @@ const BlogAuthorInfo = ({ blok }) => {
 
   return (
     <div className="flex items-center mt-8 mb-5 meta_info" {...storyblokEditable(blok)}>
-      <figure className="mr-2 basis-1/4 md:basis-auto">
+      <figure className="mr-2 basis-[45px] md:basis-auto">
         {blok.image.filename && (
           <img
-            className="w-[46px] h-[46px] object-center rounded-full author_img"
-            alt={blok.image.alt}
-            src={`${blok.image.filename}/m/`}
+            className="w-full h-full object-center object-cover rounded-full author_img"
+            alt={blok?.image?.alt}
+            src={`${blok?.image?.filename}/m/`}
           />
         )}
       </figure>

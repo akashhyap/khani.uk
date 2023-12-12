@@ -61,7 +61,7 @@ const Contact = ({ blok }) => {
         } ${blok.maxWidth ? "mx-auto" : ""}`}
       >
         {/* Form */}
-        <div className="p-8 shadow-2xl rounded-lg">
+        <div className="p-5 md:p-8 shadow-2xl rounded-lg">
           <form onSubmit={handleSubmit(onSubmit)} style={inlineStyle}>
             <div className="mb-5">
               <label
