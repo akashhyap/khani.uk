@@ -3,7 +3,6 @@ import Link from "next/link";
 import { render } from "storyblok-rich-text-react-renderer";
 
 const InsightsCard = ({ blok }) => {
-
   const isSponsored = blok?.sponsored;
   const isBackgroundImageLayout = blok?.backgroundImageLayout;
 
@@ -48,7 +47,7 @@ const InsightsCard = ({ blok }) => {
           </div>
           <div className="pt-0 p-4 md:p-6">
             <div className="inline-flex items-center gap-2 text-sm font-medium text-white group-hover:text-white/[.7]">
-              Visit the site
+              {blok.button_label}
               <svg
                 className="w-2.5 h-2.5"
                 width="16"

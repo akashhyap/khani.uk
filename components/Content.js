@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { render } from "storyblok-rich-text-react-renderer";
 import { useEffect, useState } from "react";
 import { storyblokEditable } from "@storyblok/react";
@@ -21,9 +21,14 @@ function useHeadings() {
 const Content = ({ blok }) => {
   useHeadings();
   return (
-      <main className="article-content md:text-lg content_block" {...storyblokEditable(blok)}>
-        {render(blok.content)}
-      </main>
+    <main
+      className={`${blok?.maxWidth} ${
+        blok?.maxWidth ? "mx-auto" : ""
+      } article-content md:text-lg content_block`}
+      {...storyblokEditable(blok)}
+    >
+      {render(blok.content)}
+    </main>
   );
 };
 export default Content;

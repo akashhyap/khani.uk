@@ -15,6 +15,7 @@ body {
   }
 }
 
+
 .blog_teaser .pseudo_blok {
   display: block;
   font-weight: 600;
@@ -157,4 +158,8 @@ h2 {
 
 .breadcrumb li:last-child:after {
   display: none;
+}
+
+.content_block a {
+  color: #A82A00;
 }
