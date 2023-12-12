@@ -15,9 +15,9 @@ const Config = ({ blok }) => {
       {...storyblokEditable(blok)}
     >
       <div className="md:max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center py-3 md:justify-start md:space-x-10">
+        <div className="flex justify-between items-center py-3 md:space-x-10">
           {/* Site Logo */}
-          <div className="flex justify-start lg:w-0 lg:flex-1">
+          <div className="flex justify-start lg:w-0 lg:flex-1 order-2 md:order-none">
             <Link href="/" className="relative">
               <span className="sr-only">Khani</span>
               {blok?.logo && (
@@ -67,7 +67,9 @@ const Config = ({ blok }) => {
               />
             ))}
           </nav>
-          <Link href="/search"><FaSearch /></Link>
+          <Link href="/search" className="order-3 md:order-none">
+            <FaSearch />
+          </Link>
         </div>
       </div>
 

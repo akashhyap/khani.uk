@@ -32,7 +32,7 @@ const MenuLink = ({ blok, closeMenu }) => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                  <Menu.Items className="origin-top-right absolute right-0 mt-8 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                     <div className="p-4 flex flex-col gap-y-2">
                       {blok?.menu?.map((subItem, index) => (
                         <Menu.Item key={`${subItem._uid}-${index}`}>
