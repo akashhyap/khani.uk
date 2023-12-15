@@ -59,7 +59,7 @@ const SearchBar = ({ blok }) => {
 
       {isLoading ? (
         <div className="flex justify-center items-center text-center mt-10">
-          <PiDogDuotone />{" "}
+          <PiDogDuotone />
           <span className="ml-2 text-sm font-semibold">
             Unleashing the hounds to fetch your results...
           </span>
