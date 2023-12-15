@@ -3,6 +3,7 @@ import BlogTeaser from "./BlogTeaser";
 import { getStoryblokApi, StoryblokComponent } from "@storyblok/react/rsc";
 import { usePathname } from "next/navigation";
 import Breadcrumbs from "./Breadcrumb";
+import { PiDogDuotone } from "react-icons/pi";
 
 const BigDogs = ({ blok }) => {
   const pathname = usePathname();
@@ -46,7 +47,7 @@ const BigDogs = ({ blok }) => {
 
   const loadMore = () => {
     if (!isLoading && hasMore) {
-      setCurrentPage(prev => prev + 1);
+      setCurrentPage((prev) => prev + 1);
     }
   };
 
@@ -82,11 +83,19 @@ const BigDogs = ({ blok }) => {
           )}
       </div>
       {isLoading ? (
-        <p>Loading...</p>
+        <div className="flex justify-center items-center text-center mt-10 mb-10">
+          <PiDogDuotone />
+          <span className="ml-2 text-sm font-semibold">
+            Unleashing the hounds to fetch your results...
+          </span>
+        </div>
       ) : (
         hasMore && (
           <div className="text-center mb-10">
-            <button onClick={loadMore} className="bg-poppy-900 text-white py-3 px-5 rounded-md">
+            <button
+              onClick={loadMore}
+              className="bg-poppy-900 text-white py-3 px-5 rounded-md"
+            >
               Load More
             </button>
           </div>

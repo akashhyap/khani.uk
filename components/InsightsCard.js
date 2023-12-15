@@ -3,6 +3,7 @@ import Link from "next/link";
 import { render } from "storyblok-rich-text-react-renderer";
 
 const InsightsCard = ({ blok }) => {
+  console.log(blok);
   const isSponsored = blok?.sponsored;
   const isBackgroundImageLayout = blok?.backgroundImageLayout;
 
@@ -11,13 +12,14 @@ const InsightsCard = ({ blok }) => {
       {!isBackgroundImageLayout ? (
         <div className="group rounded-xl overflow-hidden">
           <div className="relative rounded-xl overflow-hidden">
-            <div className="aspect-w-16 aspect-h-9">
+            <div className="relative aspect-w-16 aspect-h-9">
               <Image
                 src={`${blok?.image?.filename}/m/`}
-                alt="Image Description"
+                alt={blok?.image?.alt}
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="w-full h-full absolute top-0 left-0 object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
+                objectFit="cover"
+                objectPosition="center"
+                className="w-full h-full absolute top-0 left-0 group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
                 priority={true}
               />
             </div>

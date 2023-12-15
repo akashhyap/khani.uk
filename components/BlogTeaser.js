@@ -44,15 +44,19 @@ const BlogTeaser = ({ article, slug, category, tag, path }) => {
                 return (
                   <figure
                     key={item._uid}
-                    className="relative aspect-w-16 aspect-h-9 mb-4 rounded-xl overflow-hidden order-1"
+                    className="relative mb-1 rounded-xl overflow-hidden order-1"
                   >
-                    <Link href={`/${slug}`}>
+                    <Link
+                      href={`/${slug}`}
+                      className="relative block aspect-w-16 aspect-h-9"
+                    >
                       <Image
                         src={`${item.image?.filename}/m/`}
-                        alt="blog"
+                        alt={item.image?.alt}
                         fill
-                        className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        objectFit="cover"
+                        objectPosition="center"
+                        className="w-full h-full absolute top-0 left-0 group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
                       />
                     </Link>
                   </figure>
