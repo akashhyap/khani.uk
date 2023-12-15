@@ -27,10 +27,14 @@ const UsefulGuides = ({ blok }) => {
 
       setIsLoading(false);
       if (response.data.stories.length > 0) {
-        setArticles(prev => [...prev, ...response.data.stories.map(story => {
-          story.content.slug = story.slug;
-          return story;
-        })]);
+        setArticles((prev) => [
+          ...new Map(
+            [...prev, ...response.data.stories].map((item) => [
+              item["uuid"],
+              item,
+            ])
+          ).values(),
+        ]);
       }
       if (response.data.stories.length < storiesPerPage) {
         setHasMore(false);

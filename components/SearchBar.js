@@ -20,12 +20,24 @@ const SearchBar = ({ blok }) => {
       setSearchPerformed(true);
       fetchSearchResults(searchQuery).then((data) => {
         const filteredResults = data.filter((result) => {
-          if (result.content.component !== "blog") return false;
-          const slugText = result.full_slug.toLowerCase().split(/[\s/-]+/);
-          return searchQuery
+          const queryKeywords = searchQuery
             .toLowerCase()
             .split(/\s+/)
-            .every((query) => slugText.includes(query));
+            .filter(Boolean);
+
+          if (result.content.component !== "blog") return false;
+          // Extract keywords from the slug
+          const slugKeywords = result.full_slug
+            .toLowerCase()
+            .split(/[\s/-]+/)
+            .filter(Boolean);
+
+          // Check if all query keywords are present in the slug keywords
+          return queryKeywords.some((queryKeyword) =>
+            slugKeywords.some((slugKeyword) =>
+              slugKeyword.includes(queryKeyword)
+            )
+          );
         });
         setResults(filteredResults);
       });
@@ -50,7 +62,7 @@ const SearchBar = ({ blok }) => {
                 <Link href={`/${result.full_slug}`} className="capitalize">
                   {/* Image and name rendering */}
                   {result?.content?.body[2]?.image && (
-                    <div className="w-full relative aspect-w-16 aspect-h-9">
+                    <div className="w-full relative aspect-w-16 aspect-h-9 mb-3">
                       <Image
                         alt={result?.content?.body[2]?.image?.alt}
                         src={`${result?.content?.body[2]?.image?.filename}`}
@@ -60,7 +72,9 @@ const SearchBar = ({ blok }) => {
                       />
                     </div>
                   )}
-                  {result.name}
+                  <p className="leading-6 font-semibold">
+                    {result?.content?.body[0].text}
+                  </p>
                 </Link>
               </div>
             ))

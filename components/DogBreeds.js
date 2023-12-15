@@ -21,34 +21,38 @@ const DogBreeds = ({ blok }) => {
         version: "draft",
         per_page: storiesPerPage,
         page: currentPage,
-        cv: Date.now(),
+        cv: Math.random(),
         is_startpage: false,
       });
 
       setIsLoading(false);
+     
       if (response.data.stories.length > 0) {
-        setArticles(prev => [...prev, ...response.data.stories.map(story => {
-          story.content.slug = story.slug;
-          return story;
-        })]);
+        setArticles((prev) => [
+          ...new Map(
+            [...prev, ...response.data.stories].map((item) => [
+              item["uuid"],
+              item,
+            ])
+          ).values(),
+        ]);
       }
       if (response.data.stories.length < storiesPerPage) {
         setHasMore(false);
       }
     };
-
     fetchArticles();
   }, [currentPage]);
 
   const loadMore = () => {
     if (!isLoading && hasMore) {
-      setCurrentPage(prev => prev + 1);
+      setCurrentPage((prev) => prev + 1);
     }
   };
 
   const filterSiblingStories = (story) => {
-    const currentPath = blok.filter_slug;
-    return currentPath ? story.full_slug.startsWith(currentPath) : true;
+    const currentPath = blok?.filter_slug;
+    return currentPath ? story.full_slug?.startsWith(currentPath) : true;
   };
 
   return (
@@ -82,7 +86,10 @@ const DogBreeds = ({ blok }) => {
       ) : (
         hasMore && (
           <div className="text-center mb-10">
-            <button onClick={loadMore} className="bg-poppy-900 text-white py-3 px-5 rounded-md">
+            <button
+              onClick={loadMore}
+              className="bg-poppy-900 text-white py-3 px-5 rounded-md"
+            >
               Load More
             </button>
           </div>

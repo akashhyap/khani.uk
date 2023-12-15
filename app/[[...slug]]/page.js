@@ -24,11 +24,18 @@ export default async function Page({ params }) {
         <ArticleJsonLd
           useAppDir={true}
           url={`https://khani-uk.vercel.app/${data.story?.full_slug}`}
-          title={data.story.content?.body[0]?.text || data?.content?.name}
+          title={
+            data?.story?.content?.body
+              ? `${data?.story?.content?.body[0]?.text}`
+              : `${data?.content?.name}`
+          }
           datePublished={data.story?.first_published_at}
-          authorName={data.story.content?.body[1]?.authorName}
-          images={data.story.content?.body[2]?.image.filename}
-          description={data.story.content?.seo && data.story.content?.seo[0]?.site_description}
+          authorName={data.story.content?.body && `${data.story.content?.body[1]?.authorName}`}
+          images={data.story.content?.body && `${data.story.content?.body[2]?.image.filename}`}
+          description={
+            data.story.content?.seo &&
+            data.story.content?.seo[0]?.site_description
+          }
         />
       )}
       <Config blok={config?.story?.content} />
