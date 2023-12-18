@@ -1,5 +1,5 @@
 import { storyblokInit, apiPlugin } from "@storyblok/js";
-import { getStoryblokApi } from "@storyblok/react";
+import { getStoryblokApi } from "@storyblok/react/rsc";
 
 export async function fetchSearchResults(query) {
   const storyblokApi = getStoryblokApi();

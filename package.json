@@ -1,5 +1,5 @@
 {
-  "name": "vap-reviews",
+  "name": "khani-uk",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "analyze": "cross-env ANALYZE=true next build",
     "proxy": "mkcert -install && mkcert localhost && local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem"
   },
   "dependencies": {
     "@formspree/react": "^2.5.1",
     "@headlessui/react": "^1.7.17",
+    "@next/bundle-analyzer": "^14.0.4",
     "@storyblok/react": "^2.4.8",
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.7.0",
@@ -35,6 +37,7 @@
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "cross-env": "^7.0.3",
     "react-mailchimp-subscribe": "^2.1.3"
   }
 }

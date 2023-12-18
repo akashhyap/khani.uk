@@ -1,7 +1,5 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { sendEmail } from "@/utils/send-email";
-import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -21,6 +19,8 @@ const Contact = ({ blok }) => {
     setIsLoading(true);
     setIsError(false);
     try {
+      // Dynamically import the sendEmail function
+      const { sendEmail } = await import("@/utils/send-email");
       const response = await sendEmail(data);
       if (response && response.message) {
         setResponseMessage(response.message);
@@ -50,7 +50,7 @@ const Contact = ({ blok }) => {
   };
 
   return (
-    <div {...storyblokEditable(blok)}>
+    <div>
       <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight pt-5 mb-7 mt-6 leading-tight lg:leading-[3.25rem]">
         {blok?.title}
       </h1>
@@ -139,16 +139,18 @@ const Contact = ({ blok }) => {
           </form>
         </div>
         {/* Image */}
-        {blok?.image && <div className="relative hidden md:block">
-          <Image
-            src={`${blok?.image?.filename}`}
-            alt="Image Description"
-            fill
-            // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="w-full h-full absolute top-0 left-0 object-cover object-center rounded-xl"
-            priority={true}
-          />
-        </div>}
+        {blok?.image && (
+          <div className="relative hidden md:block">
+            <Image
+              src={`${blok?.image?.filename}`}
+              alt="Image Description"
+              fill
+              // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="w-full h-full absolute top-0 left-0 object-cover object-center rounded-xl"
+              priority={true}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

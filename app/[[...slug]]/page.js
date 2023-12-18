@@ -1,10 +1,9 @@
-import Config from "@/components/Config";
-import Footer from "@/components/Footer";
 import { getStoryblokApi } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import { ArticleJsonLd } from "next-seo";
 
 export const dynamicParams = true;
+
 
 export default async function Page({ params }) {
   let slug = params.slug ? params.slug.join("/") : "home";
@@ -16,7 +15,6 @@ export default async function Page({ params }) {
     resolve_relations: ["related-articles.articles"],
     cv: Math.random(),
   });
-  let { data: config } = await storyblokApi.get("cdn/stories/config");
   const isBlogPage = data.story.content.component === "blog";
   return (
     <>
@@ -30,19 +28,23 @@ export default async function Page({ params }) {
               : `${data?.content?.name}`
           }
           datePublished={data.story?.first_published_at}
-          authorName={data.story.content?.body && `${data.story.content?.body[1]?.authorName}`}
-          images={data.story.content?.body && `${data.story.content?.body[2]?.image.filename}`}
+          authorName={
+            data.story.content?.body &&
+            `${data.story.content?.body[1]?.authorName}`
+          }
+          images={
+            data.story.content?.body &&
+            `${data.story.content?.body[2]?.image.filename}`
+          }
           description={
             data.story.content?.seo &&
             data.story.content?.seo[0]?.site_description
           }
         />
       )}
-      <Config blok={config?.story?.content} />
       <div className="min-h-screen">
         <StoryblokStory story={data.story} full_slug={data.story?.full_slug} />
       </div>
-      <Footer blok={config?.story?.content} />
     </>
   );
 }
@@ -53,9 +55,6 @@ export const generateMetadata = async ({ params }) => {
   const storyblokApi = getStoryblokApi();
   let { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
     version: "draft",
-    resolve_links: "url",
-    resolve_relations: ["related-articles.articles"],
-    cv: Math.random(),
   });
   const hasSEOdata = data?.story?.content?.seo;
   return {

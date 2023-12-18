@@ -1,7 +1,14 @@
+import dynamic from "next/dynamic";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import "./globals.css";
 import { Roboto } from "next/font/google";
 import StoryblokProvider from "@/components/StoryblokProvider";
+import { getStory } from "../utils/storyblok";
+import Config from "@/components/Config";
+const DynamicFooter = dynamic(() => import("@/components/Footer"), {
+  ssr: false,
+});
+
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN,
   use: [apiPlugin],
@@ -22,11 +29,23 @@ export const metadata = {
   description: "Khani",
 };
 
-export default function RootLayout({ children }) {
+async function fetchData() {
+  const story = await getStory("config");
+  return {
+    story: story ?? false,
+  };
+}
+
+export default async function RootLayout({ children }) {
+  const { story } = await fetchData();
   return (
     <StoryblokProvider>
       <html lang="en">
-        <body className={roboto.className}>{children}</body>
+        <body className={roboto.className}>
+          <Config blok={story?.content} />
+          {children}
+          <DynamicFooter blok={story?.content} />
+        </body>
       </html>
     </StoryblokProvider>
   );

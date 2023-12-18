@@ -55,10 +55,8 @@ const BlogTeaser = ({ article, slug, category, tag, path }) => {
                         src={`${item.image?.filename}/m/`}
                         alt={item.image?.alt}
                         fill
-                        objectFit="cover"
-                        objectPosition="center"
                         sizes="(min-width: 1540px) 433px, (min-width: 1280px) 380px, (min-width: 1040px) 275px, (min-width: 780px) 309px, (min-width: 640px) 245px, calc(100vw - 40px)"
-                        className="w-full h-full absolute top-0 left-0 group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
+                        className="w-full h-full absolute top-0 left-0 object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
                       />
                     </Link>
                   </figure>
