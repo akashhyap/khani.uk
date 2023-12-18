@@ -1,32 +1,29 @@
 "use client";
 import { Fragment, useState } from "react";
 import Link from "next/link";
-import { storyblokEditable, StoryblokComponent } from "@storyblok/react/rsc";
+import { StoryblokComponent } from "@storyblok/react/rsc";
 import { Transition } from "@headlessui/react";
 import CustomStoryblokComponent from "./StoryblokMenuComponent";
 import Image from "next/image";
-import { FaSearch } from "react-icons/fa";
 
 const Config = ({ blok }) => {
+  // console.log("config", blok);
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div
-      className="relative bg-[#f1f1f1] border-b border-gray-200 py-2"
-      {...storyblokEditable(blok)}
-    >
+    <div className="relative bg-[#f1f1f1] border-b border-gray-200 py-3">
       <div className="md:max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center py-3 md:space-x-10">
+        <div className="flex justify-between items-center md:space-x-10">
           {/* Site Logo */}
-          <div className="flex justify-start lg:w-0 lg:flex-1 order-2 md:order-none">
+          <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/" className="relative">
               <span className="sr-only">Khani</span>
               {blok?.logo && (
-                <img
+                <Image
                   src={blok?.logo?.filename}
-                  alt="Khani logo"
-                  className="h-full object-contain"
+                  alt="logo"
                   width={120}
                   height={80}
+                  className="object-contain object-center"
                 />
               )}
             </Link>
@@ -58,7 +55,7 @@ const Config = ({ blok }) => {
             </button>
           </div>
           {/* Menu items */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex md:items-center space-x-8">
             {blok?.header_menu?.map((nestedBlok) => (
               <StoryblokComponent
                 blok={nestedBlok}
@@ -67,9 +64,6 @@ const Config = ({ blok }) => {
               />
             ))}
           </nav>
-          <Link href="/search" className="order-3 md:order-none" aria-label="Search">
-            <FaSearch />
-          </Link>
         </div>
       </div>
 
@@ -104,15 +98,15 @@ const Config = ({ blok }) => {
           <div className="overflow-hidden">
             <div className="px-5 pt-4 flex items-center justify-between">
               <div>
-                <Link href="/">
+                <Link href="/" className="relative">
                   <span className="sr-only">Khani</span>
                   {blok?.logo && (
-                    <img
+                    <Image
                       src={blok?.logo?.filename}
-                      alt="Khani"
-                      className="h-full object-cove"
+                      alt="logo"
                       width={180}
                       height={150}
+                      className="object-contain object-center"
                     />
                   )}
                 </Link>

@@ -1,49 +1,50 @@
+import { getAllStory, getLinks } from "@/utils/storyblok";
 import { getStoryblokApi } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import { ArticleJsonLd } from "next-seo";
 
 export const dynamicParams = true;
 
+async function fetchData(params) {
+  let slug = params.slug ? params.slug.join('/') : 'home'
+
+  const story = await getAllStory(slug)
+  return {
+    story: story ?? false
+  }
+}
 
 export default async function Page({ params }) {
-  let slug = params.slug ? params.slug.join("/") : "home";
-
-  const storyblokApi = getStoryblokApi();
-  let { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
-    version: "draft",
-    resolve_links: "url",
-    resolve_relations: ["related-articles.articles"],
-    cv: Math.random(),
-  });
-  const isBlogPage = data.story.content.component === "blog";
+  const { story } = await fetchData(params);
+  const isBlogPage = story.content.component === "blog";
   return (
     <>
       {isBlogPage && (
         <ArticleJsonLd
           useAppDir={true}
-          url={`https://khani-uk.vercel.app/${data.story?.full_slug}`}
+          url={`https://khani-uk.vercel.app/${story?.full_slug}`}
           title={
-            data?.story?.content?.body
-              ? `${data?.story?.content?.body[0]?.text}`
-              : `${data?.content?.name}`
+           story?.content?.body
+              ? `${story?.content?.body[0]?.text}`
+              : `${content?.name}`
           }
-          datePublished={data.story?.first_published_at}
+          datePublished={story?.first_published_at}
           authorName={
-            data.story.content?.body &&
-            `${data.story.content?.body[1]?.authorName}`
+            story.content?.body &&
+            `${story.content?.body[1]?.authorName}`
           }
           images={
-            data.story.content?.body &&
-            `${data.story.content?.body[2]?.image.filename}`
+            story.content?.body &&
+            `${story.content?.body[2]?.image.filename}`
           }
           description={
-            data.story.content?.seo &&
-            data.story.content?.seo[0]?.site_description
+            story.content?.seo &&
+            story.content?.seo[0]?.site_description
           }
         />
       )}
       <div className="min-h-screen">
-        <StoryblokStory story={data.story} full_slug={data.story?.full_slug} />
+       <StoryblokStory story={story} full_slug={story?.full_slug} />
       </div>
     </>
   );
@@ -90,24 +91,17 @@ export const generateMetadata = async ({ params }) => {
 };
 
 export async function generateStaticParams() {
-  const storyblokApi = getStoryblokApi();
-  let { data } = await storyblokApi.get("cdn/links/", {
-    version: "draft",
-  });
-  let paths = [];
-  Object.keys(data.links).forEach((linkKey) => {
-    if (data.links[linkKey].is_folder) {
-      return;
-    }
-    const slug = data.links[linkKey].slug;
-
-    if (slug == "home") {
-      return;
+  const links = await getLinks()
+  const paths = [];
+  Object.keys(links).forEach((linkKey) => {
+    if (links[linkKey].is_folder || links[linkKey].slug === 'home') {
+      return
     }
 
-    let splittedSlug = slug.split("/");
+    const slug = links[linkKey].slug
+    let splittedSlug = slug.split('/')
+    paths.push({ slug: splittedSlug })
+  })
 
-    paths.push({ slug: splittedSlug });
-  });
-  return paths;
+  return paths
 }

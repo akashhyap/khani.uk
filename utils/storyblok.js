@@ -21,10 +21,37 @@ export async function getStory(slug) {
   }
   const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
     version: "draft",
+    cv: Math.random(),
   });
   const story = data ? data.story : null;
   return story;
 }
+
+export async function getAllStory(slug) {
+  if (!storyblokApi) {
+    return;
+  }
+  const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
+    version: "draft",
+    cv: Math.random(),
+    resolve_links: "url",
+    resolve_relations: ["related-articles.articles"],
+  });
+  const story = data ? data.story : null;
+  return story;
+}
+
+export async function getLinks() {
+  if(!storyblokApi) {
+    return ;
+  }
+  const { data } = await storyblokApi.get('cdn/links', {
+    version: 'draft' | 'published',
+  })
+  const links = data ? data.links : null
+  return links
+}
+
 
 export async function getConfig() {
   if (!storyblokApi) {

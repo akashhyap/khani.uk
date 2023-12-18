@@ -3,6 +3,7 @@ import { storyblokEditable, StoryblokComponent } from "@storyblok/react/rsc";
 import Link from "next/link";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { FaSearch } from "react-icons/fa";
 
 const MenuLink = ({ blok, closeMenu }) => {
   const hasSubMenu = blok?.menu?.length != 0;
@@ -98,14 +99,25 @@ const MenuLink = ({ blok, closeMenu }) => {
         </>
       ) : (
         <div className="relative text-left z-10 mb-2 md:mb-0">
-          <Link
-            href={`/${blok.link.cached_url}`}
-            className="menulinks text-lg md:text-base mb-4 md:mb-0 font-medium text-black hover:text-gray-900"
-            onClick={closeMenu}
-            aria-label="menu link"
-          >
-            {blok.name}
-          </Link>
+          {blok.link.cached_url !== "search" ? (
+            <Link
+              href={`/${blok.link.cached_url}`}
+              className="menulinks text-lg md:text-base mb-4 md:mb-0 font-medium text-black hover:text-gray-900"
+              onClick={closeMenu}
+              aria-label="menu link"
+            >
+              {blok.name}
+            </Link>
+          ) : (
+            <Link
+              href="/search"
+              className="order-3 md:order-none"
+              onClick={closeMenu}
+              aria-label="Search"
+            >
+              <FaSearch />
+            </Link>
+          )}
         </div>
       )}
     </>
