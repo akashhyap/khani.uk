@@ -48,13 +48,12 @@ const BlogTeaser = ({ article, slug, category, tag, path }) => {
                   >
                     <Link
                       href={`/${slug}`}
-                      className="relative block aspect-w-16 aspect-h-10"
+                      className="relative block aspect-w-16 aspect-h-9"
                     >
                       <Image
                         src={`${item.image?.filename}/m/`}
                         alt={item.image?.alt}
-                        width={500}
-                        height={500}
+                        fill
                         objectFit="cover"
                         objectPosition="center"
                         className="w-full h-full absolute top-0 left-0 group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"

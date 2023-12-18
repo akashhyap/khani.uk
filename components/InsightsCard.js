@@ -16,8 +16,7 @@ const InsightsCard = ({ blok }) => {
               <Image
                 src={`${blok?.image?.filename}`}
                 alt={blok?.image?.alt}
-                width={500}
-                height={500}
+                fill
                 objectFit="cover"
                 objectPosition="center"
                 className="w-full h-full absolute top-0 left-0 group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
