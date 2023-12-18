@@ -19,7 +19,7 @@ const InsightsCard = ({ blok }) => {
                 fill
                 objectFit="cover"
                 objectPosition="center"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(min-width: 1540px) 433px, (min-width: 1280px) 380px, (min-width: 1040px) 275px, (min-width: 780px) 309px, (min-width: 640px) 245px, calc(100vw - 40px)"
                 className="w-full h-full absolute top-0 left-0 group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
                 {...(blok.isPriority ? { priority: true } : {})}
               />
