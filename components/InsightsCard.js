@@ -14,13 +14,14 @@ const InsightsCard = ({ blok }) => {
           <div className="relative rounded-xl overflow-hidden">
             <div className="relative aspect-w-16 aspect-h-9">
               <Image
-                src={`${blok?.image?.filename}/m/`}
+                src={`${blok?.image?.filename}`}
                 alt={blok?.image?.alt}
-                fill
+                width={500}
+                height={500}
                 objectFit="cover"
                 objectPosition="center"
                 className="w-full h-full absolute top-0 left-0 group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
-                priority={true}
+                {...(blok.isPriority ? { priority: true } : {})}
               />
             </div>
 
