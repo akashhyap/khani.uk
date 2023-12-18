@@ -24,6 +24,7 @@ const Config = ({ blok }) => {
                   width={120}
                   height={80}
                   className="object-contain object-center"
+                  priority
                 />
               )}
             </Link>
@@ -107,6 +108,7 @@ const Config = ({ blok }) => {
                       width={180}
                       height={150}
                       className="object-contain object-center"
+                      priority
                     />
                   )}
                 </Link>
