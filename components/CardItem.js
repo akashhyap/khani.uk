@@ -28,8 +28,8 @@ const CardItem = ({ blok }) => {
                   alt="Inset image"
                 />
               </div>
-              <div className="ml-2.5 sm:ml-4">
-                <h4 className="font-semibold text-white">{blok.authorName}</h4>
+              <div className="ml-2.5 sm:ml-3">
+                <p className="font-semibold text-white">{blok.authorName}</p>
               </div>
             </div>
           </div>

@@ -67,7 +67,7 @@ const Config = ({ blok }) => {
               />
             ))}
           </nav>
-          <Link href="/search" className="order-3 md:order-none">
+          <Link href="/search" className="order-3 md:order-none" aria-label="Search">
             <FaSearch />
           </Link>
         </div>

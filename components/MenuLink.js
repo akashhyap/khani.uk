@@ -40,6 +40,7 @@ const MenuLink = ({ blok, closeMenu }) => {
                             <Link
                               href={`/${subItem.link.cached_url}`}
                               className="text-lg md:text-base mb-4 md:mb-0 font-medium text-black hover:text-gray-900"
+                              aria-label="menu link"
                             >
                               {subItem.name}
                             </Link>
@@ -84,6 +85,7 @@ const MenuLink = ({ blok, closeMenu }) => {
                         href={`/${subItem.link.cached_url}`}
                         className="text-lg md:text-base mb-2 md:mb-0 font-medium text-black hover:text-gray-900"
                         onClick={closeMenu}
+                        aria-label="menu link"
                       >
                         {subItem.name}
                       </Link>
@@ -100,6 +102,7 @@ const MenuLink = ({ blok, closeMenu }) => {
             href={`/${blok.link.cached_url}`}
             className="menulinks text-lg md:text-base mb-4 md:mb-0 font-medium text-black hover:text-gray-900"
             onClick={closeMenu}
+            aria-label="menu link"
           >
             {blok.name}
           </Link>

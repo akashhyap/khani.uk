@@ -49,6 +49,7 @@ const BlogTeaser = ({ article, slug, category, tag, path }) => {
                     <Link
                       href={`/${slug}`}
                       className="relative block aspect-w-16 aspect-h-9"
+                      aria-label="blog link"
                     >
                       <Image
                         src={`${item.image?.filename}/m/`}
