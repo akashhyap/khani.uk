@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow: /_next/
+Disallow: /api/
+
+Sitemap: https://khani.co.uk/sitemap.xml

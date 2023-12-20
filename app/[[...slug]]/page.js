@@ -22,7 +22,7 @@ export default async function Page({ params }) {
       {isBlogPage && (
         <ArticleJsonLd
           useAppDir={true}
-          url={`https://khani-uk.vercel.app/${story?.full_slug}`}
+          url={`https://https://khani.co.uk/${story?.full_slug}`}
           title={
            story?.content?.body
               ? `${story?.content?.body[0]?.text}`
