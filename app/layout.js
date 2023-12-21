@@ -5,6 +5,8 @@ import { Roboto } from "next/font/google";
 import StoryblokProvider from "@/components/StoryblokProvider";
 import { getStory } from "../utils/storyblok";
 import Config from "@/components/Config";
+import { GoogleTagManager } from '@next/third-parties/google'
+
 const DynamicFooter = dynamic(() => import("@/components/Footer"), {
   ssr: false,
 });
@@ -46,6 +48,7 @@ export default async function RootLayout({ children }) {
           {children}
           <DynamicFooter blok={story?.content} />
         </body>
+        <GoogleTagManager gtmId="G-ML4X1FMSZE" dataLayerName="dataLayer" />
       </html>
     </StoryblokProvider>
   );
