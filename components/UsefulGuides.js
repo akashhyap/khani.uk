@@ -11,7 +11,7 @@ const UsefulGuides = ({ blok }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const storiesPerPage = 3; // Fetch 3 stories per page
+  const storiesPerPage = 9; // Fetch 3 stories per page
 
   useEffect(() => {
     const fetchArticles = async () => {
