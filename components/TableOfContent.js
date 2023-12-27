@@ -30,7 +30,7 @@ const TableOfContent = () => {
       {isDesktop ? (
         <div className="table-of-content w-3/12 pt-4">
           <nav className="sticky top-5 bg-slate-100 px-6 py-8 rounded-2xl">
-            <p className="text-xl font-black mb-4">IN THIS ARTICLE</p>
+            <p className="text-xl tracking-tighter font-black mb-4">IN THIS ARTICLE</p>
             <ul className="list-decimal pl-4">
               {headings.map((heading) => {
                 const ID = heading.toLowerCase().split(" ").join("-");

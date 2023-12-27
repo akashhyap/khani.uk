@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import { StoryblokComponent } from "@storyblok/react/rsc";
 import { Transition } from "@headlessui/react";
@@ -9,8 +9,26 @@ import Image from "next/image";
 const Config = ({ blok }) => {
   // console.log("config", blok);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const [header, setHeader] = useState(true);
+
+  const scrollHeader = () => {
+    if (window.scrollY >= 20) {
+      setHeader(true);
+    } else {
+      setHeader(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollHeader);
+    return () => {
+      window.addEventListener("scroll", scrollHeader);
+    };
+  });
+
   return (
-    <div className="relative md:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 my-3">
+    <div className={`${header ? "fixed top-3 left-0 right-0" : "relative my-3"}  w-full md:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-50`}>
       <div className=" bg-white py-3 px-6 shadow-[0_3px_45px_rgba(0,0,0,0.15)] rounded-lg">
         <div className="flex justify-between items-center md:space-x-10">
           {/* Site Logo */}
