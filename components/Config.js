@@ -10,8 +10,8 @@ const Config = ({ blok }) => {
   // console.log("config", blok);
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div className="relative bg-[#f1f1f1] border-b border-gray-200 py-3">
-      <div className="md:max-w-6xl mx-auto px-4 sm:px-6">
+    <div className="relative md:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 my-3">
+      <div className=" bg-white py-3 px-6 shadow-[0_3px_45px_rgba(0,0,0,0.15)] rounded-lg">
         <div className="flex justify-between items-center md:space-x-10">
           {/* Site Logo */}
           <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -21,8 +21,8 @@ const Config = ({ blok }) => {
                 <Image
                   src={blok?.logo?.filename}
                   alt="logo"
-                  width={120}
-                  height={80}
+                  width={100}
+                  height={60}
                   className="object-contain object-center"
                   priority
                 />

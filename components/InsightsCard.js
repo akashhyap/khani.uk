@@ -30,7 +30,7 @@ const InsightsCard = ({ blok }) => {
             ) : undefined}
           </div>
 
-          <div className="mt-7 [&>h2]:text-xl [&>h2]:font-semibold [&>h2]:group-hover:text-gray-600 [&>p]:leading-7 [&>p]:mt-3 ">
+          <div className="mt-7 [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:group-hover:text-gray-600 [&>h2]:tracking-tighter [&>h2]:leading-8 [&>p]:leading-7 [&>p]:mt-3 ">
             {render(blok.content)}
 
             <p className="mt-5 inline-flex items-center gap-x-1.5 text-poppy-900 decoration-2 group-hover:underline font-medium">

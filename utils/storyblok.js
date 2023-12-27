@@ -41,6 +41,7 @@ export async function getAllStory(slug) {
   return story;
 }
 
+
 export async function getLinks() {
   if(!storyblokApi) {
     return ;
@@ -51,7 +52,6 @@ export async function getLinks() {
   const links = data ? data.links : null
   return links
 }
-
 
 export async function getConfig() {
   if (!storyblokApi) {

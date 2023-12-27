@@ -7,7 +7,7 @@ const HtmlElements = ({ blok }) => {
   .filter((item) => item?.type === "code_block")
   .flatMap((item) => item?.content?.map((subItem) => subItem.text));
 
-  // console.log("html content", data);
+  console.log("html content", data);
 
   return (
     <div

@@ -6,6 +6,7 @@ html,
 body {
   font-size: 20px;
   line-height: 38px;
+  background-color: #f7f7f7;
 }
 
 
@@ -59,7 +60,7 @@ h1 {
 }
 
 h2 {
-  @apply text-3xl md:text-4xl lg:text-5xl lg:leading-snug mb-4 font-black
+  @apply text-3xl md:text-4xl lg:text-5xl lg:leading-snug mb-4 font-black tracking-tighter
 }
 
 .g-cols-2 {
