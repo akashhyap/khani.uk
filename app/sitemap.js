@@ -355,7 +355,7 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
-      url: "https://khani.co.uk/diet/fat-from-the-ham-on-the-dog",
+      url: "https://khani.co.uk/diet/fat-of-the-ham-to-the-dog",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
