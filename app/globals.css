@@ -164,3 +164,34 @@ h2 {
 .content_block a {
   color: #A82A00;
 }
+
+.header-transition {
+  left: 0;
+  right: 0;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  will-change: transform, box-shadow;
+}
+
+@media (max-width:767px) {
+  .header-transition {
+    max-width: 90%;
+  }
+}
+
+.hide_header {
+  transform: translateY(-150%);
+  opacity: 0;
+}
+
+.show_header {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.scrolling {
+  transform: translateY(0);
+  box-shadow: 0 3px 45px rgba(0, 0, 0, 0.15);
+}
+.no-scroll {
+  overflow: hidden;
+}

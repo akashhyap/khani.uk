@@ -5,86 +5,108 @@ import { StoryblokComponent } from "@storyblok/react/rsc";
 import { Transition } from "@headlessui/react";
 import CustomStoryblokComponent from "./StoryblokMenuComponent";
 import Image from "next/image";
+import { FaSearch } from "react-icons/fa";
 
 const Config = ({ blok }) => {
   // console.log("config", blok);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [headerStyle, setHeaderStyle] = useState("relative at-top my-3");
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-  const [header, setHeader] = useState(true);
-
+  // Function to update the header style based on scroll position
   const scrollHeader = () => {
-    if (window.scrollY >= 20) {
-      setHeader(true);
-    } else {
-      setHeader(false);
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY === 0) {
+      setHeaderStyle("relative show_header my-3");
+    } else if (currentScrollY > lastScrollY && currentScrollY > 20) {
+      // Scrolling down
+      setHeaderStyle("fixed hide_header");
+    } else if (currentScrollY < lastScrollY) {
+      // Scrolling up
+      setHeaderStyle("fixed scrolling top-3");
     }
+
+    setLastScrollY(currentScrollY);
   };
 
   useEffect(() => {
     window.addEventListener("scroll", scrollHeader);
-    return () => {
-      window.addEventListener("scroll", scrollHeader);
-    };
-  });
 
+    return () => {
+      window.removeEventListener("scroll", scrollHeader);
+    };
+  }, [lastScrollY]);
   return (
-    <div className={`${header ? "fixed top-3 left-0 right-0" : "relative my-3"}  w-full md:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-50`}>
-      <div className=" bg-white py-3 px-6 shadow-[0_3px_45px_rgba(0,0,0,0.15)] rounded-lg">
-        <div className="flex justify-between items-center md:space-x-10">
-          {/* Site Logo */}
-          <div className="flex justify-start lg:w-0 lg:flex-1">
-            <Link href="/" className="relative">
-              <span className="sr-only">Khani</span>
-              {blok?.logo && (
-                <Image
-                  src={blok?.logo?.filename}
-                  alt="logo"
-                  width={100}
-                  height={60}
-                  className="object-contain object-center"
-                  priority
-                />
-              )}
-            </Link>
-          </div>
-          {/* Mobile buttons */}
-          <div className="-mr-2 -my-2 md:hidden">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-black hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              <span className="sr-only">Open menu</span>
-              {/* Icon for menu (three horizontal lines) */}
-              <svg
-                className="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
+    <>
+      <div
+        className={`${headerStyle} header-transition w-full bg-white md:max-w-6xl mx-auto py-3 px-4 sm:px-6 lg:px-8 rounded-lg z-50`}
+      >
+        <div className="">
+          <div className="flex items-center md:space-x-10">
+            {/* Site Logo */}
+            <div className="flex justify-start">
+              <Link href="/" className="relative">
+                <span className="sr-only">Khani</span>
+                {blok?.logo && (
+                  <Image
+                    src={blok?.logo?.filename}
+                    alt="logo"
+                    width={100}
+                    height={60}
+                    className="object-contain object-center"
+                    priority
+                  />
+                )}
+              </Link>
+            </div>
+            {/* Mobile buttons */}
+            <div className="flex -mr-2 -my-2 order-3">
+              <button
+                type="button"
+                className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-black hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                onClick={() => setMenuOpen(!menuOpen)}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                ></path>
-              </svg>
-            </button>
+                <span className="sr-only">Open menu</span>
+                {/* Icon for menu (three horizontal lines) */}
+                <svg
+                  className="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+            {/* Menu items */}
+            <nav className="hidden md:flex md:flex-1 md:items-center space-x-8">
+              {blok?.header_menu?.map((nestedBlok) => (
+                <StoryblokComponent
+                  blok={nestedBlok}
+                  key={nestedBlok._uid}
+                  closeMenu={() => setMenuOpen(false)}
+                />
+              ))}
+            </nav>
+            {/*Search*/}
+            <div className="md:order-none order-2 ml-auto">
+              <Link href="/search" aria-label="Search">
+                <FaSearch />
+              </Link>
+            </div>
           </div>
-          {/* Menu items */}
-          <nav className="hidden md:flex md:items-center space-x-8">
-            {blok?.header_menu?.map((nestedBlok) => (
-              <StoryblokComponent
-                blok={nestedBlok}
-                key={nestedBlok._uid}
-                closeMenu={() => setMenuOpen(false)}
-              />
-            ))}
-          </nav>
         </div>
       </div>
+
+      {/* Mobile Menu */}
 
       {/* Overlay Transition */}
       <Transition
@@ -97,12 +119,10 @@ const Config = ({ blok }) => {
         leaveTo="opacity-0"
       >
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          className="fixed w-full h-screen inset-0 bg-black bg-opacity-50 z-40"
           onClick={() => setMenuOpen(false)}
         ></div>
       </Transition>
-
-      {/* Mobile menu */}
       <Transition
         show={menuOpen}
         enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -113,7 +133,7 @@ const Config = ({ blok }) => {
         leaveTo="-translate-x-full"
         as={Fragment}
       >
-        <div className="fixed top-0 left-0 w-10/12 h-screen bg-white overflow-y-auto z-50 shadow-lg">
+        <div className="side_menu fixed top-0 left-0 w-[95%] h-screen bg-white overflow-y-auto z-50 shadow-lg">
           <div className="overflow-hidden">
             <div className="px-5 pt-4 flex items-center justify-between">
               <div>
@@ -171,7 +191,7 @@ const Config = ({ blok }) => {
           </div>
         </div>
       </Transition>
-    </div>
+    </>
   );
 };
 

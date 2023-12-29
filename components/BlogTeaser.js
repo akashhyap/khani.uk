@@ -37,7 +37,7 @@ const BlogTeaser = ({ article, slug, category, tag, path }) => {
   return (
     <>
       {!isPageComponent && (
-        <div className="blog_teaser flex flex-col group bg-gray-100 p-4 rounded-xl transition duration-500 ease-in-out">
+        <div className="blog_teaser flex flex-col group bg-gray-100 rounded-xl transition duration-500 ease-in-out">
           {article?.body?.map((item) => {
             switch (item.component) {
               case "featuredImage":
