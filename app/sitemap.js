@@ -474,5 +474,35 @@ export default function sitemap() {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: "https://khani.co.uk/health/dogs-blood-stools",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: "https://khani.co.uk/health/dogs-kidney-failure",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: "https://khani.co.uk/diet/seasoning-rice-for-the-dog",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: "https://khani.co.uk/diet/potatoes-to-the-dog",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: "https://khani.co.uk/useful-guides/dog-scratches-without-fleas",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
 }
