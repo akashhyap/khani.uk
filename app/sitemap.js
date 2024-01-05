@@ -504,5 +504,35 @@ export default function sitemap() {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: "https://khani.co.uk/diet/how-much-should-a-dog-eat",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: "https://khani.co.uk/diet/grain-free-croquettes",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: "https://khani.co.uk/diet/grain-free-croquettes",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: "https://khani.co.uk/dog-breeds/small-dogs/dandie-dinmont-terrier",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: "https://khani.co.uk/dog-breeds/small-dogs/cairn-terrier",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
 }
