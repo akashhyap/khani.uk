@@ -192,6 +192,55 @@ h2 {
   transform: translateY(0);
   box-shadow: 0 3px 45px rgba(0, 0, 0, 0.15);
 }
+
 .no-scroll {
   overflow: hidden;
+}
+
+/* .menulinks {
+  border-radius: 10px;
+}
+
+@media (min-width:767px) {
+  .menulinks {
+    padding: 7px 12px;
+  }
+}
+
+.menulinks:hover {
+  background-color: #ededed;
+} */
+
+/* Base style for menu links */
+.menulinks {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Media query for larger screens */
+@media (min-width: 767px) {
+  .menulinks {
+    padding: 7px 12px;
+  }
+
+  /* Pseudo-element for the animated background */
+  .menulinks::before {
+    content: '';
+    position: absolute;
+    border-radius: 10px;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background-color: #ededed;
+    z-index: -1;
+    transition: left 0.3s ease, right 0.3s ease;
+  }
+
+  /* Hover state */
+  .menulinks:hover::before {
+    left: 0;
+    right: 0;
+  }
 }

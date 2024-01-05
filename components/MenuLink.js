@@ -15,11 +15,11 @@ const MenuLink = ({ blok, closeMenu }) => {
           <Menu
             as="div"
             key={`${blok?._uid}-i`}
-            className="relative text-left hidden md:inline-block z-10"
+            className="relative text-left hidden md:inline-block mb-4 md:mb-0 z-10"
           >
             {({ open }) => (
               <>
-                <Menu.Button className="text-lg md:text-base mb-4 md:mb-0 font-medium text-black hover:text-gray-900">
+                <Menu.Button className="menulinks text-lg md:text-base font-medium text-black hover:text-gray-900">
                   <span className="flex items-center gap-x-2">
                     {blok?.name} <IoMdArrowDropdown className="text-lg" />
                   </span>
@@ -102,7 +102,7 @@ const MenuLink = ({ blok, closeMenu }) => {
           {blok.link.cached_url !== "search" ? (
             <Link
               href={`/${blok.link.cached_url}`}
-              className="menulinks text-lg md:text-base mb-4 md:mb-0 font-medium text-black hover:text-gray-900"
+              className="menulinks text-lg md:text-base font-medium text-black hover:text-gray-900"
               onClick={closeMenu}
               aria-label="menu link"
             >

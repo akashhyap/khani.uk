@@ -43,7 +43,7 @@ const Config = ({ blok }) => {
         className={`${headerStyle} header-transition w-full bg-white md:max-w-6xl mx-auto py-3 px-4 sm:px-6 lg:px-8 rounded-lg z-50`}
       >
         <div className="">
-          <div className="flex items-center md:space-x-10">
+          <div className="flex items-center">
             {/* Site Logo */}
             <div className="flex justify-start">
               <Link href="/" className="relative">
@@ -87,7 +87,7 @@ const Config = ({ blok }) => {
               </button>
             </div>
             {/* Menu items */}
-            <nav className="hidden md:flex md:flex-1 md:items-center space-x-8">
+            <nav className="hidden md:flex md:flex-1 md:items-center ml-0 md:ml-10">
               {blok?.header_menu?.map((nestedBlok) => (
                 <StoryblokComponent
                   blok={nestedBlok}
